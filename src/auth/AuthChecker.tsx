@@ -1,22 +1,48 @@
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
+// import { useNavigate } from 'react-router-dom'
+// import { signInWithPopup } from 'firebase/auth'
+// import { auth, Providers } from '../config/firebase'
+
+// interface Props {
+//     children: React.ReactNode;
+// }
+
+// const AuthChecker = ({ children}: Props) => {
+//   const navigate = useNavigate();
+//   useEffect(() => {
+//     if (!auth.currentUser) {
+//         navigate("../")
+//         signInWithPopup(auth, Providers.google)
+//     }
+//   }, [])
+//   return (
+//     <>{children}</>
+//   )
+// }
+
+// export default AuthChecker
+
+import { useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
-import { signInWithPopup } from 'firebase/auth'
-import { auth, Providers } from '../config/firebase'
+
+//import { auth } from '../config/firebase'
 
 interface Props {
     children: React.ReactNode;
 }
 
 const AuthChecker = ({ children}: Props) => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (!auth.currentUser) {
-        navigate("../")
-        signInWithPopup(auth, Providers.google)
-    }
-  }, [])
-  return (
-    <>{children}</>
+    const isSignedIn = localStorage.getItem("isSignedIn")
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!isSignedIn) {
+            navigate("../")
+            
+        }
+    }, [])
+    return (
+        <>{children}</>
+    
   )
 }
 

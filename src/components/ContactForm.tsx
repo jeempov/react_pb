@@ -88,12 +88,13 @@ interface ContactFormProps {
     data?: {};
 }
 
-interface ContactState {
-    name: string;
-    email: string;
-    address: string;
-    phone_number: string;
-}
+// not sure if this is needed
+// interface ContactState {
+//     name: string;
+//     email: string;
+//     address: string;
+//     phone_number: string;
+// }
 
 const ContactForm = ( props:ContactFormProps ) => {
     const { register, handleSubmit } = useForm({ })

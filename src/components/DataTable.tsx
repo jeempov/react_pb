@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Button from './Button'
 import Modal from './Modal'
 import { server_calls } from '../api/server';
@@ -27,7 +27,7 @@ function DataTable() {
   }
 
   const deleteData = () => {
-    server_calls.delete(selectionModel);
+    server_calls.delete(selectionModel[0]);
     getData();
     console.log(`Selection model: ${selectionModel}`)
     setTimeout( () => { window.location.reload() }, 500)
@@ -36,7 +36,8 @@ function DataTable() {
   return (
     <>
         <Modal
-            id={selectionModel}
+        // Potentially may need to change index [0]
+            id={selectionModel[0]}
             open={open}
             onClose={handleClose}
         />
@@ -56,7 +57,7 @@ function DataTable() {
           style={{ height: 400, width: '100%' }}
           >
             <h2 className="p-3 bg-slate-300 my-2 rounded">My Contacts</h2>
-            <DataGrid rows={contactData} columns={columns} rowsPerPageOptions={[5]}
+            <DataGrid rows={contactData} columns={columns} rowsPerPageOptions={[100]}
             checkboxSelection={true} 
             onSelectionModelChange={ (item:any) => {
               setSelectionModel(item)
